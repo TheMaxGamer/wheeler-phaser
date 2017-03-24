@@ -36,6 +36,10 @@ obstacle.anchor.setTo(-6, 1);
 platforms = game.add.group();
 platforms.enableBody = true;
 ground = platforms.create(0, GAME_HEIGHT, 'ground');
+game.physics.arcade.enable(player);
+game.physics.arcade.enable(obstacle);
+game.physics.arcade.enable(0,1);
+game.physics.arcade.enable(ground);
 roofforms = game.add.group(0,0, 'roof');
 roofforms.enablebody = true;
 roof = platforms.create(0, GAME_HEIGHT*1/30,'roof');
@@ -43,10 +47,6 @@ roof.anchor.setTo(0,1);
 roof.scale.setTo(4,1);
 game.physics.arcade.enable(roof);
 roof.body.immovable = true;
-game.physics.arcade.enable(player);
-game.physics.arcade.enable(obstacle);
-game.physics.arcade.enable(0,1);
-game.physics.arcade.enable(ground);
 obstacle.body.immovable = true;
 ground.anchor.setTo(0, 1);
 ground.scale.setTo(4, 1);
@@ -63,6 +63,7 @@ scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#4286f4
 function update(){
 game.physics.arcade.collide(player, obstacle);
 game.physics.arcade.collide(player, ground);
+game.physics.arcade.collide(player, roof);
 if (spaceKey.isDown) {
       player.body.velocity.y = -300;
     }
